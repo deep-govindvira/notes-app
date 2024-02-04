@@ -1,10 +1,13 @@
 # notes-app
 Simple Note web application
 
-### git commands
+### Git commands
 ```
-git pull origin main
+git switch main
+git pull (git pull origin main)
+git switch deep
+git merge main
 git add .
-git commit -m "Message"
-git push origin deep
+git commit -m "Commit message"
+git push (git push origin deep)
 ```
