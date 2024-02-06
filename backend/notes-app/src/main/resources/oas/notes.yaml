@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: Swagger Pets tore - OpenAPI 3.0
+  version: 1.0.11
+servers:
+  - url: localhost:8080
+tags:
+  - name: Note
+    description: Everything about your Notes
+paths:
+  /note:
+    post:
+      tags:
+        - Note
+      summary: Add a new Note to the store
+      operationId: AddNote
+      requestBody:
+        description: Store a new Note in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Note'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+components:
+  schemas:
+    Note:
+      required:
+        - title
+        - note
+      type: object
+      properties:
+        title:
+          type: string
+          example: "India"
+        note:
+          type: string
+          example: "India is a country."
+      xml:
+        name: note
