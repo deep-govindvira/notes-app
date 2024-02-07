@@ -49,20 +49,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.notes.app.NotesApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- Jacoco Plugin to Generate Code Coverage Report
             Example: https://www.jacoco.org/jacoco/trunk/doc/examples/build/pom.xml
             -->
