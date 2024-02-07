@@ -1,31 +1,24 @@
 openapi: 3.0.3
 info:
-  title: Swagger Pets tore - OpenAPI 3.0
-  version: 1.0.11
+  title: Notes Application API
+  version: 1.0.0
 servers:
   - url: localhost:8080
 tags:
-  - name: Note
-    description: Everything about your Notes
+  - name: Notes
+    description: Everything is about your Notes
 paths:
   /note:
     post:
       tags:
-        - Note
-      summary: Add a new Note to the store
-      operationId: AddNote
+        - Notes
+      summary: Create a new Note
+      operationId: createNote
       requestBody:
-        description: Store a new Note in the store
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Note'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Note'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Note'
+              $ref: '#/components/schemas/CreateNoteRequest'
         required: true
       responses:
         '200':
@@ -33,27 +26,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Note'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Note'
-        '400':
-          description: Invalid input
-        '422':
-          description: Validation exception
+                $ref: '#/components/schemas/CreateNoteResponse'
 components:
   schemas:
     Note:
       required:
-        - title
         - note
+        - content
       type: object
       properties:
-        title:
-          type: string
-          example: "India"
         note:
           type: string
+          example: "India"
+        content:
+          type: string
           example: "India is a country."
-      xml:
-        name: note
+    CreateNoteResponse:
+      required:
+        - id
+        - note
+        - content
+      type: object
+      properties:
+        id:
+          type: string
+          example: "d8eb7002-1204-40e2-a770-e628129ad4d0"
+        note:
+          type: string
+          example: "India"
+        content:
+          type: string
+          example: "India is a country."
+    CreateNoteRequest:
+      required:
+        - note
+        - content
+      type: object
+      properties:
+        note:
+          type: string
+          example: "India"
+        content:
+          type: string
+          example: "India is a country."
