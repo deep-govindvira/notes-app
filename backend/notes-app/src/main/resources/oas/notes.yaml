@@ -29,18 +29,6 @@ paths:
                 $ref: '#/components/schemas/CreateNoteResponse'
 components:
   schemas:
-    Note:
-      required:
-        - note
-        - content
-      type: object
-      properties:
-        note:
-          type: string
-          example: "India"
-        content:
-          type: string
-          example: "India is a country."
     CreateNoteResponse:
       required:
         - id
