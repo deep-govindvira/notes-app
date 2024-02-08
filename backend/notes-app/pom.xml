@@ -17,6 +17,11 @@
             <artifactId>notes-datastore</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.notes.app</groupId>
+            <artifactId>notes-oas</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
