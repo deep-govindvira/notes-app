@@ -23,6 +23,7 @@
     <modules>
         <module>notes-app</module>
         <module>notes-datastore</module>
+        <module>notes-oas</module>
     </modules>
 
     <dependencies>
