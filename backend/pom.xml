@@ -23,6 +23,7 @@
     <modules>
         <module>notes-app</module>
         <module>notes-datastore</module>
+        <module>notes-oas</module>
     </modules>
 
     <dependencies>
@@ -59,6 +60,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/com/notes/app/NotesApplication.class</exclude>
+                        <exclude>**/com/notes/app/oas/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>
