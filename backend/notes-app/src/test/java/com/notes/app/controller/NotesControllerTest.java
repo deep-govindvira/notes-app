@@ -2,7 +2,7 @@ package com.notes.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.notes.app.oas.model.CreateNoteRequest;
-import com.notes.app.oas.model.CreateNoteResponse;
+import com.notes.app.oas.model.Note;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,9 @@ public class NotesControllerTest {
         mockMvc.perform(post("/note").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(createNoteRequest)))
                 .andExpect(status().isOk())
                 .andExpect(result -> {
-                    CreateNoteResponse createNoteResponse = objectMapper.readValue(result.getResponse().getContentAsString(), CreateNoteResponse.class);
-                    Assertions.assertEquals("note", createNoteResponse.getNote());
-                    Assertions.assertEquals("content", createNoteResponse.getContent());
+                    Note note = objectMapper.readValue(result.getResponse().getContentAsString(), Note.class);
+                    Assertions.assertEquals("note", note.getNote());
+                    Assertions.assertEquals("content", note.getContent());
                 });
     }
 }
