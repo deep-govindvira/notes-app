@@ -25,8 +25,8 @@ public class NotesController implements NoteApi {
         // for database
         final NoteEntity noteEntity = NoteEntity.builder()
                 .id(UUID.randomUUID().toString())
-                .title(createNoteRequest.getNote())
-                .description(createNoteRequest.getContent())
+                .title(createNoteRequest.getTitle())
+                .description(createNoteRequest.getDescription())
                 .build();
         noteEntityDao.insert(noteEntity);
         // for response
@@ -43,8 +43,8 @@ public class NotesController implements NoteApi {
 
     @Override
     public ResponseEntity<List<Note>> getAllNotes() {
-        List<NoteEntity> noteEntityList = noteEntityDao.getAllNotes();
-        List<Note> noteList = new ArrayList<>();
+        final List<NoteEntity> noteEntityList = noteEntityDao.getAllNotes();
+        final List<Note> noteList = new ArrayList<>();
         for(NoteEntity noteEntity : noteEntityList) {
             final Note note = NoteConvertor.convert(noteEntity);
             noteList.add(note);

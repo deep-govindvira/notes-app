@@ -69,14 +69,14 @@ components:
   schemas:
     CreateNoteRequest:
       required:
-        - note
-        - content
+        - title
+        - description
       type: object
       properties:
-        note:
+        title:
           type: string
           example: "India"
-        content:
+        description:
           type: string
           example: "India is a country."
 
