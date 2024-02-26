@@ -7,8 +7,8 @@ public class NoteConvertor {
     public static Note convert(final NoteEntity noteEntity) {
         final Note note = Note.builder()
                 .id(noteEntity.getId())
-                .note(noteEntity.getTitle())
-                .content(noteEntity.getDescription())
+                .title(noteEntity.getTitle())
+                .description(noteEntity.getDescription())
                 .build();
         return note;
     }

@@ -8,15 +8,17 @@ import com.notes.app.oas.model.CreateNoteRequest;
 import com.notes.app.oas.model.Note;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin
 @Controller
 public class NotesController implements NoteApi {
 
-    NoteEntityDao noteEntityDao = new NoteEntityDao();
+    private final NoteEntityDao noteEntityDao = new NoteEntityDao();
 
     @Override
     public ResponseEntity<Note> createNote(final CreateNoteRequest createNoteRequest) {

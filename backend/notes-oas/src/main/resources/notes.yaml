@@ -86,9 +86,9 @@ components:
         id:
           type: string
           example: "d8eb7002-1204-40e2-a770-e628129ad4d0"
-        note:
+        title:
           type: string
           example: "India"
-        content:
+        description:
           type: string
           example: "India is a country."
