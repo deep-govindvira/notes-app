@@ -42,6 +42,7 @@
                                 <useSpringController>true</useSpringController>
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <delegatePattern>true</delegatePattern>
+                                <additionalModelTypeAnnotations>@lombok.Builder</additionalModelTypeAnnotations>
                             </configOptions>
                         </configuration>
                     </execution>
