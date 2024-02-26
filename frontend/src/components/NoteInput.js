@@ -3,8 +3,8 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NoteInput() {
-    const [note, setNote] = useState('');
-    const [content, setContent] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -15,8 +15,8 @@ function NoteInput() {
 
         try {
             const response = await axios.post('http://localhost:8080/note', {
-                note,
-                content
+                title,
+                description
             });
             console.log('Response:', response.data);
             // alert('Note sent successfully!');
@@ -53,8 +53,8 @@ function NoteInput() {
                         class="form-control"
                         type="text"
                         placeholder="Title"
-                        value={note}
-                        onChange={(e) => setNote(e.target.value)}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
                 <div class="form-group" style={{
@@ -64,8 +64,8 @@ function NoteInput() {
                         class="form-control"
                         placeholder="Description"
                         rows={10}
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
                 <div class="form-group" style={{
