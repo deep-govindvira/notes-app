@@ -33,6 +33,10 @@ public class NoteEntityDao {
         return dynamoDBMapper.load(noteEntity);
     }
 
+    public void deleteNoteById(final String id) {
+        dynamoDBMapper.delete(getNoteById(id));
+    }
+
     public List<NoteEntity> getAllNotes() {
         return dynamoDBMapper.scan(NoteEntity.class, new DynamoDBScanExpression());
     }
