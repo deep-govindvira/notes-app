@@ -26,6 +26,49 @@ paths:
                   $ref: '#/components/schemas/Note'
 
   /note/{id}:
+    put:
+      tags:
+        - Notes
+      summary: Update a Note by id
+      operationId: updateNoteById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteRequest'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Unique Id for note
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    delete:
+      tags:
+        - Notes
+      summary: Delete a Note by id
+      operationId: deleteNoteById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Unique Id for note
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
     get:
       tags:
         - Notes
@@ -45,7 +88,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Note'
-
   /note:
     post:
       tags:
@@ -56,7 +98,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateNoteRequest'
+              $ref: '#/components/schemas/NoteRequest'
         required: true
       responses:
         '200':
@@ -67,7 +109,7 @@ paths:
                 $ref: '#/components/schemas/Note'
 components:
   schemas:
-    CreateNoteRequest:
+    NoteRequest:
       required:
         - title
         - description

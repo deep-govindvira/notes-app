@@ -8,24 +8,12 @@ function NoteInput() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setError(null);
-
-        try {
-            const response = await axios.post('http://localhost:8080/note', {
-                title,
-                description
-            });
-            console.log('Response:', response.data);
-            // alert('Note sent successfully!');
-        } catch (error) {
-            console.error('Error sending note:', error);
-            setError('Failed to send note');
-        }
-
-        setLoading(false);
+    async function handleSubmit(e) {
+        const response = await axios.post('http://localhost:8080/note', {
+            title,
+            description
+        });
+        window.location.reload();
     };
 
     return (
@@ -37,7 +25,7 @@ function NoteInput() {
         }}>
             <form onSubmit={handleSubmit} >
                 <div class="form-group" style={{
-                    margin: '10px'
+                    margin: '10px',
                 }}>
                     <h1 style={{
                         textAlign: 'center'
@@ -48,7 +36,8 @@ function NoteInput() {
                 }}>
                     <input
                         style={{
-                            width: '700px',
+                            fontSize:'25px',
+                            width: '1112px'
                         }}
                         class="form-control"
                         type="text"
