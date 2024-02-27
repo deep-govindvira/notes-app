@@ -37,7 +37,7 @@ function NoteInput() {
         }}>
             <form onSubmit={handleSubmit} >
                 <div class="form-group" style={{
-                    margin: '10px'
+                    margin: '10px',
                 }}>
                     <h1 style={{
                         textAlign: 'center'
@@ -48,7 +48,8 @@ function NoteInput() {
                 }}>
                     <input
                         style={{
-                            width: '700px',
+                            fontSize:'25px',
+                            width: '700px'
                         }}
                         class="form-control"
                         type="text"
