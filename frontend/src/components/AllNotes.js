@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function AllNotes() {
 
-    const [count, setCount] = useState(0);
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/note/allNotes');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const jsonData = await response.json();
-            setData(jsonData);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+    async function handleUpdate(id, title, description) {
+        const response = await axios.put('http://localhost:8080/note/' + id, {
+            title,
+            description
+        });
+        window.location.reload();
     };
 
-    const renderData = () => {
-        if (!data) {
+    async function DeleteNote(id) {
+        const response = await axios.delete('http://localhost:8080/note/' + id);
+        window.location.reload();
+    };
+
+    const [Notes, setNotes] = useState(null);
+
+    useEffect(() => {
+        getAllNotes();
+    }, []);
+
+    async function getAllNotes() {
+        const response = await fetch('http://localhost:8080/note/allNotes');
+        const jsonNotes = await response.json();
+        setNotes(jsonNotes);
+    };
+
+    const renderNotes = () => {
+        if (!Notes) {
             return <p>Loading...</p>;
         }
 
@@ -31,13 +37,48 @@ function AllNotes() {
             <div>
                 <h1></h1>
                 <ul>
-                    {data.map(item => (
-                        <div key={item.id} style={{
-                            margin:'100px'
+                    {Notes.map(Note => (
+                        <div key={Note.id} style={{
+                            margin: '50px'
                         }}>
-                            <div class="col-sm">
-                                <h4>{item.title}</h4>
-                                <textarea class="form-control" value={item.description} rows={5}>Description:</textarea>
+                            <div className="col-sm">
+                                <table className='table table-hover' style={{
+                                    border: '0px white'
+                                }}>
+                                    <tbody>
+                                        <tr scope="row">
+                                            <td>
+                                                <input
+                                                    id={'Title' + Note.id}
+                                                    style={{
+                                                        fontSize: '25px',
+                                                        width: '700px'
+                                                    }}
+                                                    class="form-control"
+                                                    type="text"
+                                                    placeholder="Title"
+                                                    defaultValue={Note.title}
+                                                />
+                                            </td>
+                                            <td align='right'>
+                                                <button
+                                                    onClick={() => handleUpdate(Note.id, document.getElementById('Title' + Note.id).value, document.getElementById(Note.id + 'Description').value)}
+                                                    style={{
+                                                        marginRight: '50px'
+                                                    }} className='btn btn-success'>Update</button>
+                                                <button
+                                                    onClick={() => DeleteNote(Note.id)}
+                                                    className='btn btn-danger'>Delete</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan="2">
+                                                <textarea id={Note.id + 'Description'} class="form-control" defaultValue={Note.description} rows={5}
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     ))}
@@ -46,7 +87,7 @@ function AllNotes() {
         );
     };
 
-    return <div>{renderData()}</div>;
+    return <div>{renderNotes()}</div>;
 }
 
 export default AllNotes;

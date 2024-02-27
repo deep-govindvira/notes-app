@@ -5,7 +5,7 @@ import com.notes.app.datastore.dao.NoteEntityDao;
 import com.notes.app.datastore.entity.NoteEntity;
 import com.notes.app.oas.api.NoteApi;
 import com.notes.app.oas.model.Note;
-import com.notes.app.oas.model.UserNote;
+import com.notes.app.oas.model.NoteRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,12 +21,12 @@ public class NotesController implements NoteApi {
     private final NoteEntityDao noteEntityDao = new NoteEntityDao();
 
     @Override
-    public ResponseEntity<Note> createNote(final UserNote createNoteRequest) {
+    public ResponseEntity<Note> createNote(final NoteRequest noteRequest) {
         // for database
         final NoteEntity noteEntity = NoteEntity.builder()
                 .id(UUID.randomUUID().toString())
-                .title(createNoteRequest.getTitle())
-                .description(createNoteRequest.getDescription())
+                .title(noteRequest.getTitle())
+                .description(noteRequest.getDescription())
                 .build();
         noteEntityDao.insert(noteEntity);
         // for response
@@ -62,12 +62,12 @@ public class NotesController implements NoteApi {
     }
 
     @Override
-    public ResponseEntity<Note> updateNoteById(String id, UserNote createNoteRequest) {
-        noteEntityDao.deleteNoteById(id);
+    public ResponseEntity<Note> updateNoteById(String id, NoteRequest noteRequest) {
+//        noteEntityDao.deleteNoteById(id);
         final NoteEntity noteEntity = NoteEntity.builder()
             .id(id)
-            .title(createNoteRequest.getTitle())
-            .description(createNoteRequest.getDescription())
+            .title(noteRequest.getTitle())
+            .description(noteRequest.getDescription())
             .build();
         noteEntityDao.insert(noteEntity);
         final Note note = NoteConvertor.convert(noteEntity);

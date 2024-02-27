@@ -35,7 +35,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserNote'
+              $ref: '#/components/schemas/NoteRequest'
       parameters:
         - in: path
           name: id
@@ -98,7 +98,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserNote'
+              $ref: '#/components/schemas/NoteRequest'
         required: true
       responses:
         '200':
@@ -109,7 +109,7 @@ paths:
                 $ref: '#/components/schemas/Note'
 components:
   schemas:
-    UserNote:
+    NoteRequest:
       required:
         - title
         - description
