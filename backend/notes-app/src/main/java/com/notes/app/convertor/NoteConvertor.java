@@ -9,6 +9,8 @@ public class NoteConvertor {
                 .id(noteEntity.getId())
                 .title(noteEntity.getTitle())
                 .description(noteEntity.getDescription())
+                .color(noteEntity.getColor())
+                .date(noteEntity.getDate())
                 .build();
         return note;
     }

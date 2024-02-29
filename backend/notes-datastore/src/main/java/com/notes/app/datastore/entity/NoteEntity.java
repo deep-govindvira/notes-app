@@ -25,4 +25,10 @@ public class NoteEntity {
 
     @DynamoDBAttribute(attributeName = "description")
     private String description;
+
+    @DynamoDBAttribute(attributeName = "color")
+    private String color;
+
+    @DynamoDBAttribute(attributeName = "date")
+    private String date;
 }

@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import NoteInput from './components/NoteInput';
-import AllNotes from './components/AllNotes';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Notes from './components/Notes';
+import { Note } from './components/Note';
+import { CreateNote } from './components/CreateNote';
 
 function App() {
   return (
-    <div className="App">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <NoteInput />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm">
-            <AllNotes />
-          </div>
-        </div>
-      </div>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/CreateNote' element={<CreateNote />} />
+        <Route path='/Notes' element={<Notes />} />
+        <Route path='/Note/:noteId' element={<Note />} />
+      </Routes>
     </div>
   );
 }

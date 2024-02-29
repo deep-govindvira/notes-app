@@ -24,10 +24,12 @@ public class NotesController implements NoteApi {
     public ResponseEntity<Note> createNote(final NoteRequest noteRequest) {
         // for database
         final NoteEntity noteEntity = NoteEntity.builder()
-                .id(UUID.randomUUID().toString())
-                .title(noteRequest.getTitle())
-                .description(noteRequest.getDescription())
-                .build();
+            .id(UUID.randomUUID().toString())
+            .title(noteRequest.getTitle())
+            .description(noteRequest.getDescription())
+            .color(noteRequest.getColor())
+            .date(noteRequest.getDate())
+            .build();
         noteEntityDao.insert(noteEntity);
         // for response
         final Note note = NoteConvertor.convert(noteEntity);
@@ -68,6 +70,8 @@ public class NotesController implements NoteApi {
             .id(id)
             .title(noteRequest.getTitle())
             .description(noteRequest.getDescription())
+            .color(noteRequest.getColor())
+            .date(noteRequest.getDate())
             .build();
         noteEntityDao.insert(noteEntity);
         final Note note = NoteConvertor.convert(noteEntity);
