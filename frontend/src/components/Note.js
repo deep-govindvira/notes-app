@@ -59,7 +59,7 @@ export const Note = () => {
                         document.getElementById('Description').value,
                         document.getElementById('Color').value,
                         (new Date()).toLocaleString()
-                    )}>Update</button>
+                    )}>Save</button>
                 </div>
                 <div class='p-3'>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue={data.color}>

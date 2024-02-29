@@ -34,7 +34,7 @@ export const CreateNote = () => {
             <div class="d-flex flex-row flex-wrap">
                 <div class='p-3'>
                     <button style={{
-                        fontSize:'22px'
+                        fontSize:'22px',
                     }} class='btn btn-success' onClick={() => {
                         Create(
                             document.getElementById('Title').value,
