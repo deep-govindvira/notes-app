@@ -113,6 +113,8 @@ components:
       required:
         - title
         - description
+        - color
+        - date
       type: object
       properties:
         title:
@@ -121,6 +123,12 @@ components:
         description:
           type: string
           example: "India is a country."
+        color:
+          type: string
+          example: "white"
+        date:
+          type: string
+          example: "Thu Feb 29 2024 17:28:44 GMT+0530 (India Standard Time)"
 
     Note:
       type: object
@@ -134,3 +142,9 @@ components:
         description:
           type: string
           example: "India is a country."
+        color:
+          type: string
+          example: "white"
+        date:
+          type: string
+          example: "Thu Feb 29 2024 17:28:44 GMT+0530 (India Standard Time)"

@@ -16,14 +16,16 @@ export const Note = () => {
             })
     }, []);
 
-    const Update = async (id, title, description) => {
+    const Update = async (id, title, description, color, date) => {
         if (!title) {
             alert("Please Give title");
             return
         }
         const response = await axios.put('http://localhost:8080/note/' + id, {
             title,
-            description
+            description,
+            color,
+            date
         });
         window.location.reload();
     };
@@ -35,30 +37,52 @@ export const Note = () => {
     };
 
     return data ? (
-        <div class='d-flex flex-column bd-highlight flex-wrap p-2'>
-            {/* <div class="p-3"> */}
-            {/* <input class='form-control' id='Id' defaultValue={data.id} disabled /> */}
-            {/* </div> */}
+        <div class='d-flex flex-column  flex-wrap p-2'>
             <div class="p-3">
                 <input style={{
-                    fontSize:'25px'
-                }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} />
+                    fontSize: '25px'
+                }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} spellcheck="false" />
             </div>
             <div class="p-3">
                 <textarea style={{
-                    height:'250px'
-                }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} />
+                    fontFamily: 'Verdana',
+                    height: '400px'
+                }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} spellcheck="false" />
             </div>
             <div class="d-flex flex-row flex-wrap">
                 <div class="p-3">
-                    <button class='btn btn-warning' onClick={() => Update(
+                    <button style={{
+                        fontSize: '22px'
+                    }} class='btn btn-warning' onClick={() => Update(
                         noteId,
                         document.getElementById('Title').value,
-                        document.getElementById('Description').value
+                        document.getElementById('Description').value,
+                        document.getElementById('Color').value,
+                        (new Date()).toLocaleString()
                     )}>Update</button>
                 </div>
+                <div class='p-3'>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue={data.color}>
+                        <option value="white">White</option>
+                        <option value="#FFCCCB">Red</option>
+                        <option value="lightblue">Blue</option>
+                        <option value="lightgreen">Green</option>
+                        <option value="lightyellow">Yellow</option>
+                        <option value="#FFD580">Orange</option>
+                        <option value="#CBC3E3">Purple</option>
+                        <option value="black">Black</option>
+                    </select>
+                </div>
+                <div class='p-3'>
+                    <p style={{
+                        fontSize: '22px',
+                        fontFamily: 'Verdana',
+                    }} class='form-control' id='date'>Time : {data.date}</p>
+                </div>
                 <div class="p-3">
-                    <button class='btn btn-danger' onClick={() => Delete(
+                    <button style={{
+                        fontSize: '22px'
+                    }} class='btn btn-danger' onClick={() => Delete(
                         noteId
                     )}>Delete</button>
                 </div>
