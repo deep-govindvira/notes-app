@@ -22,13 +22,14 @@ export const CreateNote = () => {
         <div class="d-flex flex-column flex-wrap p-2">
             <div class="p-3">
                 <input style={{
-                    fontSize: '25px'
+                    fontSize: '25px',
+                    fontWeight:'bold'
                 }} class='form-control' id='Title' placeholder='Title' spellcheck="false"></input>
             </div>
             <div class="p-3">
                 <textarea style={{
-                    fontFamily: 'Verdana',
-                    height: '400px'
+                    height: '400px',
+                    fontSize: '20px'
                 }} class='form-control' id='Description' placeholder='Description' spellcheck="false"></textarea>
             </div>
             <div class="d-flex flex-row flex-wrap">

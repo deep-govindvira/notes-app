@@ -1,5 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Kode+Mono:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+*{
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  /* font-weight: '2000px'; */
+  font-variation-settings:
+    "wdth" 200;
+}
+
 .App {
-  text-align: center;
+  text-align: 'center';
 }
 
 .App-logo {

@@ -40,13 +40,14 @@ export const Note = () => {
         <div class='d-flex flex-column  flex-wrap p-2'>
             <div class="p-3">
                 <input style={{
-                    fontSize: '25px'
+                    fontSize: '25px',
+                    fontWeight:'bold'
                 }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} spellcheck="false" />
             </div>
             <div class="p-3">
                 <textarea style={{
-                    fontFamily: 'Verdana',
-                    height: '400px'
+                    height: '400px',
+                    fontSize: '20px'
                 }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} spellcheck="false" />
             </div>
             <div class="d-flex flex-row flex-wrap">
@@ -76,7 +77,7 @@ export const Note = () => {
                 <div class='p-3'>
                     <p style={{
                         fontSize: '22px',
-                        fontFamily: 'Verdana',
+                        // fontFamily: 'Verdana',
                     }} class='form-control' id='date'>Time : {data.date}</p>
                 </div>
                 <div class="p-3">
