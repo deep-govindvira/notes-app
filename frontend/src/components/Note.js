@@ -49,7 +49,7 @@ export const Note = () => {
                     height:'250px'
                 }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} />
             </div>
-            <div class="d-flex flex-row bd-highlight flex-wrap p-2 p-3">
+            <div class="d-flex flex-row flex-wrap">
                 <div class="p-3">
                     <button class='btn btn-warning' onClick={() => Update(
                         noteId,

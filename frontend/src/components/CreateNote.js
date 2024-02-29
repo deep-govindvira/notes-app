@@ -17,7 +17,7 @@ export const CreateNote = () => {
     };
 
     return (
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column bd-highlight flex-wrap p-2">
             <div class="p-3">
                 <input style={{
                     fontSize:'25px'
