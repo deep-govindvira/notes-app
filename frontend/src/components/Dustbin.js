@@ -35,7 +35,8 @@ export const Dustbin = () => {
             <div class='p-3'>
                 <input class='form-control'
                     style={{
-                        fontSize: '25px'
+                        fontSize: '25px',
+                        fontWeight:'bold'
                     }}
                     type="text"
                     placeholder="Search..."
