@@ -2,7 +2,7 @@ import { click } from '@testing-library/user-event/dist/click';
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 
-const Notes = () => {
+export const Notes = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -102,5 +102,3 @@ const Notes = () => {
 
     );
 }
-
-export default Notes;

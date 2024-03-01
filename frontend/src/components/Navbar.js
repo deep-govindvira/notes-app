@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom"
 
-const Navbar = () => {
+export const Navbar = () => {
 
     const NavbarStyle = ( { isActive }) => {
         return {
@@ -22,5 +22,3 @@ const Navbar = () => {
         </div>
     )
 }
-
-export default Navbar
