@@ -34,7 +34,14 @@ public class NoteEntityDao {
     }
 
     public void deleteNoteById(final String id) {
-        dynamoDBMapper.delete(getNoteById(id));
+        NoteEntity noteEntity = getNoteById(id);
+        if(noteEntity.getDust()) {
+            dynamoDBMapper.delete(getNoteById(id));
+        }
+        else {
+            noteEntity.setDust(true);
+            insert(noteEntity);
+        }
     }
 
     public List<NoteEntity> getAllNotes() {

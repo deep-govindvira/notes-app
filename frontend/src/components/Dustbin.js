@@ -2,7 +2,7 @@ import { click } from '@testing-library/user-event/dist/click';
 import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 
-export const Notes = () => {
+export const Dustbin = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export const Notes = () => {
                 />
             </div>
             <div class='d-flex flex-wrap p-2'>
-                {filteredData.map(note => note.dust != true ? (
+                {filteredData.map(note => note.dust ? (
                     <div style={{
                         cursor: 'pointer'
                     }} onClick={() => Open(note.id)} class='d-flex flex-column  flex-wrap p-2' key={note.id} >
@@ -53,7 +53,7 @@ export const Notes = () => {
                             backgroundColor: note.color,
                         }}>
                             <div class='d-flex  mb-3 flex-wrap p-2' style={{
-                                border: '0px',
+                                // border: '0px',
                                 borderColor: note.color,
                                 backgroundColor: note.color,
                                 maxWidth: '230px',

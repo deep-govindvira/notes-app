@@ -16,7 +16,7 @@ export const Note = () => {
             })
     }, []);
 
-    const Update = async (id, title, description, color, date) => {
+    const Update = async (id, title, description, color, date, dust) => {
         if (!title) {
             alert("Please Give title");
             return
@@ -25,7 +25,8 @@ export const Note = () => {
             title,
             description,
             color,
-            date
+            date,
+            dust
         });
         window.location.reload();
     };
@@ -33,37 +34,64 @@ export const Note = () => {
     const Delete = async (id) => {
         const response = await axios.delete('http://localhost:8080/note/' + id, {
         });
-        window.location.href = '/Notes';
+        if(data.dust) {
+            window.location.href = '/Dustbin';
+        }
+        else {
+            window.location.href = '/Notes';
+        }
     };
 
     return data ? (
         <div class='d-flex flex-column  flex-wrap p-2'>
             <div class="p-3">
-                <input style={{
+                {data.dust ? <input style={{
                     fontSize: '25px',
-                    fontWeight:'bold'
-                }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} spellcheck="false" />
+                    fontWeight: 'bold'
+                }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} spellcheck="false" disabled /> :
+                    <input style={{
+                        fontSize: '25px',
+                        fontWeight: 'bold'
+                    }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} spellcheck="false" />}
             </div>
             <div class="p-3">
-                <textarea style={{
+                {data.dust ? <textarea style={{
                     height: '400px',
-                    fontSize: '20px'
-                }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} spellcheck="false" />
+                    fontSize: '20px',
+                }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} spellcheck="false" disabled /> :
+                    <textarea style={{
+                        height: '400px',
+                        fontSize: '20px'
+                    }} class='form-control' id='Description' placeholder='Description' defaultValue={data.description} spellcheck="false" />}
             </div>
             <div class="d-flex flex-row flex-wrap">
                 <div class="p-3">
-                    <button style={{
-                        fontSize: '22px'
-                    }} class='btn btn-warning' onClick={() => Update(
-                        noteId,
-                        document.getElementById('Title').value,
-                        document.getElementById('Description').value,
-                        document.getElementById('Color').value,
-                        (new Date()).toLocaleString()
-                    )}>Save</button>
+                    {data.dust ?
+                        <button style={{
+                            fontSize: '22px'
+                        }} class='btn btn-outline-success' onClick={() => Update(
+                            noteId,
+                            document.getElementById('Title').value,
+                            document.getElementById('Description').value,
+                            document.getElementById('Color').value,
+                            (new Date()).toLocaleString(),
+                            false
+                        )}>Restore</button>
+                        :
+                        <button style={{
+                            fontSize: '22px'
+                        }} class='btn btn-outline-success' onClick={() => Update(
+                            noteId,
+                            document.getElementById('Title').value,
+                            document.getElementById('Description').value,
+                            document.getElementById('Color').value,
+                            (new Date()).toLocaleString(),
+                            false
+                        )}>Save</button>
+                    }
                 </div>
                 <div class='p-3'>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue={data.color}>
+                    {data.dust ? <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue={data.color} disabled>
                         <option value="white">White</option>
                         <option value="#FFCCCB">Red</option>
                         <option value="lightblue">Blue</option>
@@ -72,20 +100,34 @@ export const Note = () => {
                         <option value="#FFD580">Orange</option>
                         <option value="#CBC3E3">Purple</option>
                         <option value="black">Black</option>
-                    </select>
+                    </select> : <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue={data.color}>
+                        <option value="white">White</option>
+                        <option value="#FFCCCB">Red</option>
+                        <option value="lightblue">Blue</option>
+                        <option value="lightgreen">Green</option>
+                        <option value="lightyellow">Yellow</option>
+                        <option value="#FFD580">Orange</option>
+                        <option value="#CBC3E3">Purple</option>
+                        <option value="black">Black</option>
+                    </select>}
                 </div>
                 <div class='p-3'>
                     <p style={{
                         fontSize: '22px',
-                        // fontFamily: 'Verdana',
                     }} class='form-control' id='date'>Time : {data.date}</p>
                 </div>
                 <div class="p-3">
-                    <button style={{
+                    {data.dust ? <button style={{
                         fontSize: '22px'
-                    }} class='btn btn-danger' onClick={() => Delete(
+                    }} class='btn btn-outline-danger' onClick={() => Delete(
                         noteId
-                    )}>Delete</button>
+                    )}>Delete</button> :
+                        <button style={{
+                            fontSize: '22px'
+                        }} class='btn btn-outline-warning' onClick={() => Delete(
+                            noteId
+                        )}>Remove</button>
+                    }
                 </div>
             </div>
         </div>

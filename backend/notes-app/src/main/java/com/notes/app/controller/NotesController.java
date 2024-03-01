@@ -29,6 +29,7 @@ public class NotesController implements NoteApi {
             .description(noteRequest.getDescription())
             .color(noteRequest.getColor())
             .date(noteRequest.getDate())
+            .dust(noteRequest.getDust())
             .build();
         noteEntityDao.insert(noteEntity);
         // for response
@@ -60,7 +61,6 @@ public class NotesController implements NoteApi {
         final Note note = NoteConvertor.convert(noteEntity);
         noteEntityDao.deleteNoteById(id);
         return ResponseEntity.ok(note);
-
     }
 
     @Override
@@ -72,6 +72,7 @@ public class NotesController implements NoteApi {
             .description(noteRequest.getDescription())
             .color(noteRequest.getColor())
             .date(noteRequest.getDate())
+            .dust(noteRequest.getDust())
             .build();
         noteEntityDao.insert(noteEntity);
         final Note note = NoteConvertor.convert(noteEntity);
