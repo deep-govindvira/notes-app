@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Markdown from 'react-markdown';
 
 export const Note = () => {
     const { noteId } = useParams(null);
@@ -54,6 +55,11 @@ export const Note = () => {
                         fontWeight: 'bold'
                     }} class='form-control' id='Title' placeholder='Title' defaultValue={data.title} spellcheck="false" />}
             </div>
+            {/* <div class="p-3">
+                <Markdown>
+                    {data.description}
+                </Markdown>
+            </div> */}
             <div class="p-3">
                 {data.dust ? <textarea style={{
                     height: '400px',
