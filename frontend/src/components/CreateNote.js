@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const CreateNote = () => {
 
-    const Create = async (title, description, color, date) => {
+    const Create = async (title, description, color, date, dust) => {
         if (!title) {
             alert("Please Give title");
             return
@@ -13,7 +13,8 @@ export const CreateNote = () => {
             title,
             description,
             color,
-            date
+            date,
+            dust
         });
         window.location.href = '/Note/' + response.data.id;
     };
@@ -36,12 +37,13 @@ export const CreateNote = () => {
                 <div class='p-3'>
                     <button style={{
                         fontSize:'22px',
-                    }} class='btn btn-success' onClick={() => {
+                    }} class='btn btn-outline-primary' onClick={() => {
                         Create(
                             document.getElementById('Title').value,
                             document.getElementById('Description').value,
                             document.getElementById('Color').value,
-                            (new Date()).toLocaleString()
+                            (new Date()).toLocaleString(),
+                            false
                         )
                     }}>Create</button>
                 </div>

@@ -11,6 +11,7 @@ public class NoteConvertor {
                 .description(noteEntity.getDescription())
                 .color(noteEntity.getColor())
                 .date(noteEntity.getDate())
+                .dust(noteEntity.getDust())
                 .build();
         return note;
     }

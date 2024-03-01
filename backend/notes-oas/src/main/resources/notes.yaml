@@ -115,6 +115,7 @@ components:
         - description
         - color
         - date
+        - dust
       type: object
       properties:
         title:
@@ -129,6 +130,9 @@ components:
         date:
           type: string
           example: "Thu Feb 29 2024 17:28:44 GMT+0530 (India Standard Time)"
+        dust:
+          type: boolean
+          example: false
 
     Note:
       type: object
@@ -148,3 +152,6 @@ components:
         date:
           type: string
           example: "Thu Feb 29 2024 17:28:44 GMT+0530 (India Standard Time)"
+        dust:
+          type: boolean
+          example: false

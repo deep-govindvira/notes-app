@@ -31,4 +31,7 @@ public class NoteEntity {
 
     @DynamoDBAttribute(attributeName = "date")
     private String date;
+
+    @DynamoDBAttribute(attributeName = "dust")
+    private Boolean dust;
 }

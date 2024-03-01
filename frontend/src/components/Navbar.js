@@ -1,13 +1,23 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
+
+    const NavbarStyle = ( { isActive }) => {
+        return {
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: isActive ? 'none' : 'none',
+            color:'black',
+            marginLeft: '30px',
+            fontSize:'20px',
+        }
+    }
+
     return (
         <div class='d-flex flex-column'>
-            <nav style={{
-                marginLeft:'20px'
-            }} class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand"  href='/CreateNote'>Create</a>
-                <a class="navbar-brand"  href='/Notes'>Notes</a>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <NavLink style={NavbarStyle} to='/CreateNote'>Create</NavLink>
+                <NavLink style={NavbarStyle} to='/Notes'>Notes</NavLink>
+                <NavLink style={NavbarStyle} to='/Dustbin'>Dustbin</NavLink>
             </nav>
         </div>
     )
