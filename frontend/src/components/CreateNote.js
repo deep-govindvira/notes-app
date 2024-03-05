@@ -21,11 +21,21 @@ export const CreateNote = () => {
 
     return (
         <div class="d-flex flex-column flex-wrap p-2">
-            <div class="p-3">
-                <input style={{
-                    fontSize: '25px',
-                    fontWeight:'bold'
-                }} class='form-control' id='Title' placeholder='Title' spellcheck="false"></input>
+            <div class='d-flex p-3 flex-row'>
+                <div>
+                    <img style={{
+                        marginTop: '10px',
+                        marginRight: '20px'
+                    }} src='/tag.png' width={'30px'} height={'30px'}></img>
+                </div>
+                <div style={{
+                    width: '1438px'
+                }}>
+                    <input style={{
+                        fontSize: '25px',
+                        fontWeight: 'bold'
+                    }} class='form-control' id='Title' placeholder='Title' spellcheck="false"></input>
+                </div>
             </div>
             <div class="p-3">
                 <textarea style={{
@@ -36,7 +46,7 @@ export const CreateNote = () => {
             <div class="d-flex flex-row flex-wrap">
                 <div class='p-3'>
                     <button style={{
-                        fontSize:'22px',
+                        fontSize: '22px',
                     }} class='btn btn-outline-primary' onClick={() => {
                         Create(
                             document.getElementById('Title').value,
@@ -45,9 +55,19 @@ export const CreateNote = () => {
                             (new Date()).toLocaleString(),
                             false
                         )
-                    }}>Create</button>
+                    }}>
+                        <img src='/innovation.png' width={'30px'} height={'30px'} style={{
+                            marginRight: '10px',
+                            marginBottom:'5px'
+                        }}></img>
+                        Create
+                    </button>
                 </div>
-                <div class='p-3'>
+                <div class='d-flex p-3 flex-row'>
+                    <img src='/colour.png' width={'30px'} height={'30px'} style={{
+                        marginRight: '10px',
+                        marginTop: '10px'
+                    }}></img>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue='white'>
                         <option value="white">White</option>
                         <option value="#FFCCCB">Red</option>
