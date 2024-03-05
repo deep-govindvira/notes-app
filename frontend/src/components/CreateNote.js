@@ -55,12 +55,18 @@ export const CreateNote = () => {
                             (new Date()).toLocaleString(),
                             false
                         )
-                    }}>Create</button>
+                    }}>
+                        <img src='/innovation.png' width={'30px'} height={'30px'} style={{
+                            marginRight: '10px',
+                            marginBottom:'5px'
+                        }}></img>
+                        Create
+                    </button>
                 </div>
                 <div class='d-flex p-3 flex-row'>
                     <img src='/colour.png' width={'30px'} height={'30px'} style={{
                         marginRight: '10px',
-                        marginTop:'10px'
+                        marginTop: '10px'
                     }}></img>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id='Color' defaultValue='white'>
                         <option value="white">White</option>
