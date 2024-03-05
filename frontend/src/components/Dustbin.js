@@ -32,17 +32,27 @@ export const Dustbin = () => {
 
     return (
         <div class='d-flex flex-column flex-wrap p-2'>
-            <div class='p-3'>
-                <input class='form-control'
-                    style={{
-                        fontSize: '25px',
-                        fontWeight:'bold'
-                    }}
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                />
+            <div class='d-flex p-3 flex-row'>
+                <div>
+                    <img style={{
+                        marginTop: '10px',
+                        marginRight: '20px'
+                    }} src='/loupe.png' width={'30px'} height={'30px'}></img>
+                </div>
+                <div style={{
+                    width: '1438px'
+                }}>
+                    <input class='form-control'
+                        style={{
+                            fontSize: '25px',
+                            fontWeight: 'bold',
+                        }}
+                        type="text"
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                </div>
             </div>
             <div class='d-flex flex-wrap p-2'>
                 {filteredData.map(note => note.dust ? (
