@@ -6,13 +6,13 @@ import com.notes.app.oas.model.Note;
 public class NoteConvertor {
     public static Note convert(final NoteEntity noteEntity) {
         final Note note = Note.builder()
-                .id(noteEntity.getId())
-                .title(noteEntity.getTitle())
-                .description(noteEntity.getDescription())
-                .color(noteEntity.getColor())
-                .date(noteEntity.getDate())
-                .dust(noteEntity.getDust())
-                .build();
+            .id(noteEntity.getId())
+            .title(noteEntity.getTitle())
+            .description(noteEntity.getDescription())
+            .color(noteEntity.getColor())
+            .date(noteEntity.getDate())
+            .dust(noteEntity.getDust())
+            .build();
         return note;
     }
 }

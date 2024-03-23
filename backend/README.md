@@ -16,5 +16,5 @@ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 ```
 #### How to run locally by skipping unit test, jacoco, checkstyle?
 ```
-mvnw.cmd clean verify -Dmaven.test.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true && java -jar notes-app/target/notes-app-1.0.0.jar
+mvnw.cmd clean verify -Dmaven.test.skip=true -Djacoco.skip=true && java -jar notes-app/target/notes-app-1.0.0.jar
 ```

@@ -6,6 +6,7 @@ import com.notes.app.datastore.entity.NoteEntity;
 import com.notes.app.oas.api.NoteApi;
 import com.notes.app.oas.model.Note;
 import com.notes.app.oas.model.NoteRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +19,8 @@ import java.util.UUID;
 @Controller
 public class NotesController implements NoteApi {
 
-    private final NoteEntityDao noteEntityDao = new NoteEntityDao();
+    @Autowired
+    private NoteEntityDao noteEntityDao;
 
     @Override
     public ResponseEntity<Note> createNote(final NoteRequest noteRequest) {
@@ -48,7 +50,7 @@ public class NotesController implements NoteApi {
     public ResponseEntity<List<Note>> getAllNotes() {
         final List<NoteEntity> noteEntityList = noteEntityDao.getAllNotes();
         final List<Note> noteList = new ArrayList<>();
-        for(NoteEntity noteEntity : noteEntityList) {
+        for (NoteEntity noteEntity : noteEntityList) {
             final Note note = NoteConvertor.convert(noteEntity);
             noteList.add(note);
         }
@@ -65,7 +67,7 @@ public class NotesController implements NoteApi {
 
     @Override
     public ResponseEntity<Note> updateNoteById(String id, NoteRequest noteRequest) {
-//        noteEntityDao.deleteNoteById(id);
+        // noteEntityDao.deleteNoteById(id);
         final NoteEntity noteEntity = NoteEntity.builder()
             .id(id)
             .title(noteRequest.getTitle())

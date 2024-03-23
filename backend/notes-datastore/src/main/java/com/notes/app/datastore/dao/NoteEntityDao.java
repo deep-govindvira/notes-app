@@ -1,44 +1,37 @@
 package com.notes.app.datastore.dao;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.notes.app.datastore.entity.NoteEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class NoteEntityDao {
-    AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", "us-west-2"))
-            .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("id", "pass")))
-            .build();
+    @Autowired
+    private DynamoDBMapper dynamoDBMapper;
 
-    DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(client);
     public void insert(final NoteEntity noteEntity) {
-//        CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(NoteEntity.class);
-//        createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L)); // Set desired throughput
-//        client.createTable(createTableRequest);
-
+        // CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(NoteEntity.class);
+        // createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L)); // Set desired throughput
+        // client.createTable(createTableRequest);
         dynamoDBMapper.save(noteEntity);
     }
 
     public NoteEntity getNoteById(final String id) {
         final NoteEntity noteEntity = NoteEntity.builder()
-                .id(id)
-                .build();
+            .id(id)
+            .build();
         return dynamoDBMapper.load(noteEntity);
     }
 
     public void deleteNoteById(final String id) {
         NoteEntity noteEntity = getNoteById(id);
-        if(noteEntity.getDust()) {
+        if (noteEntity.getDust()) {
             dynamoDBMapper.delete(getNoteById(id));
-        }
-        else {
+        } else {
             noteEntity.setDust(true);
             insert(noteEntity);
         }
