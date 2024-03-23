@@ -48,7 +48,7 @@ public class NotesController implements NoteApi {
     public ResponseEntity<List<Note>> getAllNotes() {
         final List<NoteEntity> noteEntityList = noteEntityDao.getAllNotes();
         final List<Note> noteList = new ArrayList<>();
-        for(NoteEntity noteEntity : noteEntityList) {
+        for (NoteEntity noteEntity : noteEntityList) {
             final Note note = NoteConvertor.convert(noteEntity);
             noteList.add(note);
         }
@@ -65,7 +65,7 @@ public class NotesController implements NoteApi {
 
     @Override
     public ResponseEntity<Note> updateNoteById(String id, NoteRequest noteRequest) {
-//        noteEntityDao.deleteNoteById(id);
+        // noteEntityDao.deleteNoteById(id);
         final NoteEntity noteEntity = NoteEntity.builder()
             .id(id)
             .title(noteRequest.getTitle())

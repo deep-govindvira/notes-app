@@ -13,32 +13,31 @@ import java.util.List;
 
 public class NoteEntityDao {
     AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", "us-west-2"))
-            .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("id", "pass")))
-            .build();
+        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", "us-west-2"))
+        .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("id", "pass")))
+        .build();
 
     DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(client);
-    public void insert(final NoteEntity noteEntity) {
-//        CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(NoteEntity.class);
-//        createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L)); // Set desired throughput
-//        client.createTable(createTableRequest);
 
+    public void insert(final NoteEntity noteEntity) {
+        // CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(NoteEntity.class);
+        // createTableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L)); // Set desired throughput
+        // client.createTable(createTableRequest);
         dynamoDBMapper.save(noteEntity);
     }
 
     public NoteEntity getNoteById(final String id) {
         final NoteEntity noteEntity = NoteEntity.builder()
-                .id(id)
-                .build();
+            .id(id)
+            .build();
         return dynamoDBMapper.load(noteEntity);
     }
 
     public void deleteNoteById(final String id) {
         NoteEntity noteEntity = getNoteById(id);
-        if(noteEntity.getDust()) {
+        if (noteEntity.getDust()) {
             dynamoDBMapper.delete(getNoteById(id));
-        }
-        else {
+        } else {
             noteEntity.setDust(true);
             insert(noteEntity);
         }
