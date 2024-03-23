@@ -1,23 +1,17 @@
 package com.notes.app.datastore.dao;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.notes.app.datastore.entity.NoteEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class NoteEntityDao {
-    AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8000", "us-west-2"))
-        .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("id", "pass")))
-        .build();
-
-    DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(client);
+    @Autowired
+    private DynamoDBMapper dynamoDBMapper;
 
     public void insert(final NoteEntity noteEntity) {
         // CreateTableRequest createTableRequest = dynamoDBMapper.generateCreateTableRequest(NoteEntity.class);
