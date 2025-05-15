@@ -13,8 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DynamoDBConfig {
     @Bean
-    public AmazonDynamoDB getAmazonDynamoDB(@Value("${dynamodb.endpoint}") String endpoint,
-                                            @Value("${dynamodb.region}") String region,
+    public AmazonDynamoDB getAmazonDynamoDB(@Value("${dynamodb.endpoint}") String endpoint, @Value("${dynamodb.region}") String region,
                                             @Value("${dynamodb.id}") String id,
                                             @Value("${dynamodb.password}") String password) {
         final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
